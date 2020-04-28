@@ -40,7 +40,25 @@ git diff last current进行对比,位置不能对调,如果对调的话执行命
 解决方法:git remote set-url origin git@github.com:lut/EvolutionApp.git   
 [参考](https://stackoverflow.com/questions/26953071/github-authentication-failed-github-does-not-provide-shell-access)
 ## 情景五 
-学会使用.gitignore文件来过滤不需要提交和上传的文件
+学会使用.gitignore文件来过滤不需要提交和上传的文件  
+大量与项目无关的文件全推到远程仓库上，同步的时候会非常慢，且跟编辑器相关的一些配置推上去之后，别人更新也会受其影响。所以，我们使用该文件，对不必要的文件进行忽略，使其不被git追踪。
 
+ 一把情况下，.gitignore文件，在项目一开始创建的时候就创建，并推送到远程服务器上。这样大家初次同步项目的时候，就是用到该文件，避免以后，团队成员把与项目无关的文件，传到远程服务器上。
+```
+*.log           #表示忽略项目中所有以.log结尾的文件
+123?.log        #表示忽略项目中所有以123加任意字符的文件
+/error.log      #表示忽略项目中根目录中的error.log 这个文件
+src/main/test/* #表示忽略/src/main/test/目录下的所有文件
+**/java/        #匹配所有java目录下的所有文件
+!/error.log     #表示在之前的匹配规则下，被命中的文件，可以使用!对前面的规则进行否定
+```
+
+对于已经提交到远程或本地仓库的文件，.gitignore配置之后不会生效。我们必须先删除本地暂存区里的文件，之后在加上.gitignore 文件，最后再把变更提交到远程仓库上。
+```
+git rm --cached 文件名     #从暂存区删除某个文件
+git rm -rf --cached 文件夹 #表示递归删除暂存区该文件夹的所有东西
+```
+
+[add a blog link](https://www.cnblogs.com/qdhxhz/p/9763546.html)
 ## 情景六
 
