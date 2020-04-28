@@ -33,4 +33,14 @@ git reset HEAD files...取消暂存
 ##情景四
 git diff last current进行对比,位置不能对调,如果对调的话执行命令后,显示不同地方+和-号会有改变;  
 比较本地当前分支与远程分支的不同:git diff master origin/master
+##配置SSH-key并将其加入github遇到的一个问题
+本地已经有两个ssh-key公钥和私钥,用于配置其他服务器上的ssh链接服务.当自己申请了一个github账号,新建了一个仓库.为了避免繁琐额输入账号和密码的过程.经过一系列尝试,将公钥加入github之后,使用ssh -T git@github.com,返回的结果是:Hi guy! You've successfully authenticated, but GitHub does not provide shell access.
+
+
+解决方法:git remote set-url origin git@github.com:lut/EvolutionApp.git   
+[参考](https://stackoverflow.com/questions/26953071/github-authentication-failed-github-does-not-provide-shell-access)
+## 情景五 
+学会使用.gitignore文件来过滤不需要提交和上传的文件
+
+## 情景六
 
