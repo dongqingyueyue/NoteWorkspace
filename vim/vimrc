@@ -1,0 +1,88 @@
+set nu
+set showmode
+set showcmd
+syntax on 
+set mouse=a
+filetype indent on 
+set nowrap
+set visualbell
+set autoread
+set wildmenu
+set wildmode=longest:list,full
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set autoindent
+
+set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
+set enc=utf8
+set fencs=utf8,gbk,gb2312,gb18030
+
+call plug#begin('~/.vim/plugged')
+
+Plug '907th/vim-auto-save'
+Plug 'scrooloose/nerdtree'
+Plug 'mhinz/vim-startify'
+
+Plug 'ferrine/md-img-paste.vim'
+
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+
+Plug 'mzlogin/vim-markdown-toc'
+Plug 'lervag/vimtex'
+
+Plug 'sirver/ultisnips'
+
+Plug 'iamcco/markdown-preview.vim'
+Plug 'iamcco/mathjax-support-for-mkdp'
+Plug 'iamcco/markdown-preview.nvim'
+
+call plug#end()
+
+let g:tex_flavor='latex'
+let g:vimtex_view_method='zathura'
+let g:vimtex_quickfix_mode=0
+set conceallevel=1
+let g:tex_conceal='abdmg'
+
+let g:UltiSnipsExpandTrigger = '<tab>'
+let g:UltiSnipsJumpForwardTrigger = '<tab>'
+let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
+
+
+let g:mkdp_path_to_chrome = "firefox"
+" 设置 chrome 浏览器的路径（或是启动 chrome（或其他现代浏览器）的命令）
+" 如果设置了该参数, g:mkdp_browserfunc 将被忽略
+
+let g:mkdp_browserfunc = 'MKDP_browserfunc_default'
+" vim 回调函数, 参数为要打开的 url
+
+let g:mkdp_auto_start = 1
+" 设置为 1 可以在打开 markdown 文件的时候自动打开浏览器预览，只在打开
+" markdown 文件的时候打开一次
+
+let g:mkdp_auto_open = 1
+" 设置为 1 在编辑 markdown 的时候检查预览窗口是否已经打开，否则自动打开预
+" 览窗口
+
+let g:mkdp_auto_close = 1
+" 在切换 buffer 的时候自动关闭预览窗口，设置为 0 则在切换 buffer 的时候不
+" 自动关闭预览窗口
+
+let g:mkdp_refresh_slow = 0
+" 设置为 1 则只有在保存文件，或退出插入模式的时候更新预览，默认为 0，实时
+" 更新预览
+
+let g:mkdp_command_for_global = 0
+" 设置为 1 则所有文件都可以使用 MarkdownPreview 进行预览，默认只有 markdown
+" 文件可以使用改命令
+
+let g:mkdp_open_to_the_world = 0
+" 设置为 1, 在使用的网络中的其他计算机也能访问预览页面
+" 默认只监听本地（127.0.0.1），其他计算机不能访问
+let g:vim_markdown_math = 1
+"高亮Latex数学公式
+
+
+
