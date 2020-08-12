@@ -278,9 +278,9 @@ $$
 
 
 
-##5.矩阵李群和李代数
+## 5.矩阵李群和李代数
 
-####李群
+#### 李群
 
 本部分主要介绍两种特殊的矩阵李群：用于表示旋转的特殊正交群（special orthogonal group）SO(3)和用于表示姿态的特殊欧几里得群（special Euclidean group）SE(3).
 
@@ -299,7 +299,7 @@ $$
 T^{-1}=\left[\begin{matrix} C&r\\0^T &1\end{matrix}\right]^{-1}=\left[\begin{matrix} C^T&-C^Tr\\0^T &1\end{matrix}\right]
 $$
 
-####李代数
+#### 李代数
 
 每一个李群对应一个李代数，李代数的向量空间是一个切空间。
 
@@ -318,6 +318,10 @@ $$
 其中 $\xi^\land=\left[ \begin{matrix} \rho \\\phi\end{matrix}\right]^\and = \left[ \begin{matrix} \phi^\land & \rho \\ 0^T&0\end{matrix}\right]$
 
 
+
+### 求导雅克比
+
+在 $SO(3)$,定义加减法操作完全不同于实数空间,遵循自己的规则:TBD(补充)
 
 
 
