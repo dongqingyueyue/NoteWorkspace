@@ -68,4 +68,10 @@ git rm -rf --cached 文件夹 #表示递归删除暂存区该文件夹的所有�
 [add a blog link](https://www.cnblogs.com/qdhxhz/p/9763546.html)  
 
 ## 情景六
+git 中几个重要的概念
+HEAD---当前commit的引用,指的是当前工作目录所对应的commit
+事实上,当使用checkout reset等指令手动指定改变当前commit的时候,HEAD也会一起跟过去.
 
+branch--
+
+当有人使用 git clone 时，除了从远程仓库把 .git 这个仓库目录下载到工作目录中，还会 checkout （签出） master（checkout 的意思就是把某个 commit 作为当前 commit，把 HEAD 移动过去，并把工作目录的文件内容替换成这个 commit 所对应的内容
