@@ -103,59 +103,6 @@
 
 
 
-## 4.欧拉角
-
-
-
-
-
-## 5.矩阵李群和李代数
-
-#### 李群
-
-本部分主要介绍两种特殊的矩阵李群：用于表示旋转的特殊正交群（special orthogonal group）SO(3)和用于表示姿态的特殊欧几里得群（special Euclidean group）SE(3).
-
-SO(3)对于加法并不封闭，用于表示旋转
-$$
-SO(3)=\{C\in R^{3\times3}|CC^T=I,detC = 1\}
-$$
-零矩阵也不是一个有效的旋转矩阵：$ 0 \notin SO(3)$ 如果没有这些性质，SO(3)无法构成一个向量空间。
-
-SE(3)用于表示平移和旋转的集合
-$$
-SE(3) = \{T = \left[\begin{matrix} C&R\\0^T&1 \end{matrix}\right] \in R^{3\times3}|C\in SO(3),r\in R^{3\times3}\}
-$$
-矩阵李群中的每个元素都是矩阵形式，把它们组合起来的运算是矩阵乘法，而逆运算是矩阵求逆。SO(3)的逆从旋转矩阵可以很容易推算，SE(3)的逆：
-$$
-T^{-1}=\left[\begin{matrix} C&r\\0^T &1\end{matrix}\right]^{-1}=\left[\begin{matrix} C^T&-C^Tr\\0^T &1\end{matrix}\right]
-$$
-
-#### 李代数
-
-每一个李群对应一个李代数，李代数的向量空间是一个切空间。
-
-SO(3)对应的向量空间so(3)定义：
-$$
-so(3) = \{\Phi=\phi^\land\in R^{3\times3}|\phi\in R^3\}
-$$
-注意so(3)是一个$3\times3$的反对称矩阵，如下公式成立：
-$$
-\Phi=\phi^\land \Longrightarrow \phi=\Phi^\lor
-$$
-SE(3)对应的李代数se(3)有如下定义：
-$$
-se(3)=\{ \Xi=\xi^\land \in R^{4\times4}|\xi \in R^6\}
-$$
-其中 $\xi^\land=\left[ \begin{matrix} \rho \\\phi\end{matrix}\right]^\and = \left[ \begin{matrix} \phi^\land & \rho \\ 0^T&0\end{matrix}\right]$
-
-
-
-### 求导雅克比
-
-在 $SO(3)$,定义加减法操作完全不同于实数空间,遵循自己的规则:TBD(补充)
-
-
-
 # 二. 观测量与噪声
 
 ### 2.1观测量
