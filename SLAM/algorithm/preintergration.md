@@ -63,6 +63,13 @@ $$
 a^\land b = - b^\land a
 $$
 
+$$
+a^\wedge a^\wedge = -I + aa^T(a为单位向量)
+$$
+
+$$
+a^\wedge a^\wedge a^\wedge = -a^\wedge(a为单位向量)
+$$
 
 hat($^\and$)的逆操作为vee($\vee$):
 $$
@@ -78,23 +85,40 @@ exp(\phi^\wedge) = I + \phi ^ \wedge
 $$
 对应公式(1)的逆操作为:
 $$
-\log(R) = \frac{\psi\cdot(R - R^T)}{2\sin(\psi)}
+\log(R) = \frac{\psi\cdot(R - R^T)}{2\sin(\psi)} \tag{推导存疑}
 $$
 其中:
 $$
-\psi = \cos^{-1} (\frac{tr(R)-1}{2})
+\psi = \cos^{-1} (\frac{tr(R)-1}{2}) \tag{A}
 $$
-因此有:
+对于公式(A)推导过程如下:
+$$
+exp(\phi^\wedge) = I + \frac {\sin(\lVert \phi \rVert)}{\lVert \phi \rVert} \phi^\wedge + \frac{1-\cos(\lVert \phi \rVert)}{\lVert \phi \rVert^2}(\phi^\wedge)^2
+$$
+将反对称性质代入上面公式
+$$
+R = exp(\phi^\wedge) = \cos(\phi)I + \frac {\sin(\lVert \phi \rVert)}{\lVert \phi \rVert} \phi^\wedge + (1-\cos(\lVert \phi \rVert) \frac{\phi}{\lVert \phi \rVert}\frac{\phi^T}{\lVert \phi \rVert}
+$$
+
+$$
+tr(R) = tr(\cos(\lVert \phi \rVert)I + \frac {\sin(\lVert \phi \rVert)}{\lVert \phi \rVert} \phi^\wedge + (1-\cos(\lVert \phi \rVert) \frac{\phi}{\lVert \phi \rVert}\frac{\phi^T}{\lVert \phi \rVert})  \\
+= 3\cos(\lVert \phi \rVert) + 0  + (1-\cos(\lVert \phi \rVert) )
+= 2\cos(\lVert \phi \rVert) +1
+$$
+
+由此A公式得证.
+
+综上得出:
 $$
 \log(R)^\vee = a\psi
 $$
 
-#### 1.2.1 重要公式一
+#### 1.2.1 重要公式一 BCH公式近似
 
+两个矩阵的指数相乘:$\ln(exp(A)exp(B))$可以用BCH公式表示,基于此,可以得到公式:
 $$
 Exp(\phi + \delta\phi) \approx  Exp(\phi)Exp(J_r(\phi)\delta \phi) \tag{2}
 $$
-
 其中$J_r$为流型中右雅克比,有
 $$
 J_r(\phi) = I -  \frac{1-\cos(\lVert \phi \rVert)}{\lVert \phi \rVert^2}\phi^\wedge +\frac {\lVert \phi \rVert-sin(\lVert \phi \rVert)}{\lVert \phi^3 \rVert}   (\phi^\wedge)^2   \tag{3}
@@ -103,13 +127,45 @@ $$
 $$
 \log({Exp(\phi)Exp(\delta\phi)}) \approx \phi + J_r^{-1}(\phi)\delta\phi
 $$
+左雅克比:
+$$
+Exp(\phi + \delta\phi) \approx  Exp(J_l(\phi)\delta \phi)Exp(\phi)
+$$
 
+$$
+J_r(\phi) = I +\frac{1-\cos(\lVert \phi \rVert)}{\lVert \phi \rVert^2}\phi^\wedge +\frac {\lVert \phi \rVert-sin(\lVert \phi \rVert)}{\lVert \phi^3 \rVert}   (\phi^\wedge)^2
+$$
 
+以上公式可以参考(参考机器人学中的状态估计p201-202页).
 
+#### 1.2.2重要公式二
 
+指数映射是联系李群和相应的李代数之间的关键操作,对于矩阵的指数运算有:
+$$
+exp(A) = I+A +\frac{1}{2!}A^2 + \frac{1}{3!}A^3 +\frac{1}{4!}A^4 \cdots = \sum_{n=0}^{\infty}\frac{1}{n!}A^n
+$$
+$A$表示的是$n\times n$的方阵.
 
-
-
+另外一个非常重要的公式:
+$$
+RExp(\phi)R^T = exp(R\phi^\wedge R^T) = Exp(R\phi) \tag{4} \\ 
+\Leftrightarrow Exp(\phi)R = RExp(R^T\phi)
+$$
+这里有个需要注意的点是:
+$$
+Exp(\phi) = exp(\phi^\wedge)
+$$
+同样的有:
+$$
+Log(R) = log(R)^\vee
+$$
+公式(4)的推导过程:
+$$
+RExp(\phi)R^T = Rexp(\phi^\wedge )R^T \\
+=I+R\phi^\wedge R^T+\frac{1}{2!}R(\phi^\wedge)^2 R^T  + \frac{1}{3!}R(\phi^\wedge)^3 R^T \cdots  \\
+= I+R\phi^\wedge R^T+\frac{1}{2!}R\phi^\wedge R^T R\phi^\wedge R^T + \frac{1}{3!}R\phi^\wedge R^TR\phi^\wedge R^TR\phi^\wedge R^T \cdots \\
+= \sum_{n=0}^{\infty}\frac{1}{n!}(R\phi^\wedge R^T)^n = exp(R\phi^\wedge R^T) = exp((R\phi)^\wedge)= Exp(R\phi)
+$$
 
 ## 2. 预积分理论
 
