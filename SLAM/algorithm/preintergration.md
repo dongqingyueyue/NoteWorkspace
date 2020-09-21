@@ -167,8 +167,18 @@ RExp(\phi)R^T = Rexp(\phi^\wedge )R^T \\
 = \sum_{n=0}^{\infty}\frac{1}{n!}(R\phi^\wedge R^T)^n = exp(R\phi^\wedge R^T) = exp((R\phi)^\wedge)= Exp(R\phi)
 $$
 
+
+
 ## 2. 预积分理论
 
+对于流型预积分理论的提出,依赖于两个公式:
+$$
+R_R(\phi) = RExp(\delta \phi) ,\delta \phi \in R^3
+$$
+对于$SE(3)$,$T= (R,p)$  **----TBD(找到如下公式出处和证明)**
+$$
+R_T(\delta \phi ,\delta p) = (RExp(\delta \phi) , P + R \delta p)
+$$
 
 
 
