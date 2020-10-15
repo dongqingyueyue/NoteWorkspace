@@ -75,3 +75,16 @@ HEAD---当前commit的引用,指的是当前工作目录所对应的commit
 branch--
 
 当有人使用 git clone 时，除了从远程仓库把 .git 这个仓库目录下载到工作目录中，还会 checkout （签出） master（checkout 的意思就是把某个 commit 作为当前 commit，把 HEAD 移动过去，并把工作目录的文件内容替换成这个 commit 所对应的内容
+
+
+
+## 情景七
+
+git merge ××   是将×× 的分支合并到当前分支
+
+git push origin(远程主机名)  本地分支:远程分支   
+
+git pull origin(远程主机名)  远程分支:本地分支 
+
+
+
