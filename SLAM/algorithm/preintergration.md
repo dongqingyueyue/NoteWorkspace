@@ -256,7 +256,7 @@ $\notag J_{k}=I \\\notag  P_{k}=0$
 
 $J_{k+1}=FJ_{k}$
 
-$P_{k+1}=FP_{k}F^{T}+VQV_{T}$
+$P_{k+1}=FP_{k}F^{T}+VQV^{T}$
 
 
 
