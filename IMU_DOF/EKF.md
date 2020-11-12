@@ -1,5 +1,11 @@
 [toc]
 
+| 作者   | 版本 | 日期     | 联系方式          |
+| ------ | ---- | -------- | ----------------- |
+| yandq6 | 1.0  | 20201111 | sdydq1988@126.com |
+
+
+
 # EKF algorithm
 
 ## 1.综述
@@ -10,10 +16,26 @@ IMU EKF算法主要是根据IMU输出的原始数据来计算IMU的姿态,基本
 
    ### 2.1 时间更新
 
-1. 假设有个初始状态四元数,对四元数积分:
+卡尔曼时间更新方程主要用于预测下一时刻的状态,建立的状态为7维度,四元数+ 零偏,主要的原理步骤为
+
+1. 对于零偏建模为常数值:
+   $$
+   \dot{b} = 0   \tag{0}
+   $$
+   因此有:
+   $$
+   \hat{b}_{k+1|k} = \hat{b}_{k|k}   \tag{1}
+   $$
+   当有新的陀螺测量值$\omega_{k+1}$ ,则有:
+   $$
+   \hat{\omega}_{k+1|k} = \omega_{k+1} - \hat{b}_{k+1|k} \tag{3}
+   $$
+   
+
+2. 有个初始状态四元数,对四元数积分,看做是时间更新方程:
 
 $$
-\overline{q}_G^L(t_{k+1}) = \Theta(t_{k+1},t_k)\overline{q}_G^L(t_k)
+\overline{q}_G^L(t_{k+1}) = \Theta(t_{k+1},t_k)\overline{q}_G^L(t_k)  \tag{4}
 $$
 
 其中,
@@ -30,10 +52,10 @@ $$
 \end{bmatrix}
 $$
 
-2. 计算矩阵更新:
+3.  计算协方差矩阵更新:
 
 $$
-P_{k+1} = \Phi P_k \Phi^T + GQ_dG^T
+P_{k+1} = \Phi P_k \Phi^T + GQ_dG^T \tag{5}
 $$
 
 $$
@@ -68,23 +90,33 @@ $$
 
 计算残差 :
 $$
-r = z-\hat{z}
+r = z-\hat{z} \tag{6}
 $$
+由(6)式可以得到
+$$
+z-\hat{z} =  (I - [\delta \theta\times])C_n^bg^n -C_n^bg^n 
+$$
+因此 
+$$
+r =[C_n^bg^n\times] \delta \theta + 0 \cdot bias
+$$
+得到了H 矩阵为$([C_n^bg^n\times]\ \ 0)$
+
 计算卡尔曼滤波增益:
 $$
-K = PH^T(HPH^T+R)^{-1}
+K = PH^T(HPH^T+R)^{-1} \tag{7}
 $$
 计算改正数:
 $$
-\Delta \hat{x}(+) = Kr
+\Delta \hat{x}(+) = Kr \tag{8}
 $$
 计算更新的状态:
 $$
-x= \hat{x} \oplus \Delta \hat{x}(+)
+x= \hat{x} \oplus \Delta \hat{x}(+) \tag{9}
 $$
 计算更新的协方差矩阵:
 $$
-P_{k+1|k+1} = (I_{6\times 6}-KH)P_{k+1|k}(I_{6 \times 6}-KH)^T + KRK^T
+P_{k+1|k+1} = (I_{6\times 6}-KH)P_{k+1|k}(I_{6 \times 6}-KH)^T + KRK^T \tag{10}
 $$
 
 
